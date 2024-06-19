@@ -7,8 +7,8 @@ html{
 img{
     display: block;
     margin: 0 auto;
-    height: 50%;
-    width: 50%;
+    height: 45%;
+    width: 45%;
     object-fit: contain;
 }
 #avatar img {
