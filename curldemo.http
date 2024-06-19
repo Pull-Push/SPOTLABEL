@@ -1,0 +1,26 @@
+#! MUSIC GET INFO
+# curl "https://api.spotify.com/v1/artists/1cXi8ALPQCBHZbf0EgP4Ey?si=etSsf7IURUioEX1dqnsZQA" \
+#      -H "Authorization: Bearer  BQCIs24V-vZcp9k15fUVuQBentXcXOy9egJoJUxFzojAMYDKMdDhzr64T4ca1EcDj7RCYK4BiMi1dXjazQkK8FgaRIuPokx5OQcceS0x2Jk7syyWTsw"
+
+
+#! PODCAST GET INFO
+# curl "https://api.spotify.com/v1/shows/3DgfoleqaW61T2amZQKINx?si=50c03006a8b04a0d" \
+#      -H "Authorization: Bearer  BQCIs24V-vZcp9k15fUVuQBentXcXOy9egJoJUxFzojAMYDKMdDhzr64T4ca1EcDj7RCYK4BiMi1dXjazQkK8FgaRIuPokx5OQcceS0x2Jk7syyWTsw"
+
+
+
+#TODO GET BEARER ACCESS TOKEN
+# curl -X POST "https://accounts.spotify.com/api/token" \
+#      -H "Content-Type: application/x-www-form-urlencoded" \
+#      -d "grant_type=client_credentials&client_id=b022fefe1dac4b958cf8b46705e4ff09&client_secret=ca2ac4e1bee14947bc322a6eb7952032"
+
+
+#   "access_token": "BQCIs24V-vZcp9k15fUVuQBentXcXOy9egJoJUxFzojAMYDKMdDhzr64T4ca1EcDj7RCYK4BiMi1dXjazQkK8FgaRIuPokx5OQcceS0x2Jk7syyWTsw",
+#   "token_type": "Bearer",
+#   "expires_in": 3600
+
+
+#< MUSIC https://open.spotify.com/artist/1cXi8ALPQCBHZbf0EgP4Ey?si=etSsf7IURUioEX1dqnsZQA
+#< PODCAST https://open.spotify.com/show/3DgfoleqaW61T2amZQKINx?si=50c03006a8b04a0d
+
+

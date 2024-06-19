@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&family=Nunito:wght@300&family=Plus+Jakarta+Sans:wght@500&display=swap');
+
+html{
+    height: 100%;
+    width: 100%;
+}
+img{
+    display: block;
+    margin: 0 auto;
+    height: 50%;
+    width: 50%;
+    object-fit: contain;
+}
+#avatar img {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+body{
+    height: 100%;
+    background-color: black;
+}
+.nav{
+    margin: 0;
+}
+.main{
+    align-content: center;
+}
+#logmain{
+        background-image: url(main_bg_dark.png);
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        height: 100%;
+        color: antiquewhite;
+}
+#homespot{
+    width: 120px;
+    margin: 0;
+}
+h1,h5{
+text-align: center;
+font-family: 'Jost', sans-serif;
+color: antiquewhite;
+background-color: black;
+}
+.mid{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+h5{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: inline-block;
+    margin-bottom: 0;
+}
+button{
+    margin: 0 auto;
+    display: block;
+    border-radius: 15px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.navbar-brand{
+    font-size: x-large;
+}
