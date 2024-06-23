@@ -1,4 +1,4 @@
-const clientId = "b022fefe1dac4b958cf8b46705e4ff09"; // Replace with your client ID
+const clientId = "42790d4178c348f38eb9dfab1c1539a6"; // Replace with your client ID
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
@@ -19,7 +19,7 @@ export async function redirectToAuthCodeFlow(clientId) {
     const params = new URLSearchParams();
     params.append("client_id", clientId);
     params.append("response_type", "code");
-    params.append("redirect_uri", "http://localhost:5500");
+    params.append("redirect_uri", "http://localhost:8000/log");
     params.append("scope", "user-read-private user-read-email");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
@@ -53,22 +53,14 @@ export async function getAccessToken(clientId, code) {
     params.append("client_id", clientId);
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://localhost:5500");
+    params.append("redirect_uri", "http://localhost:8000/log");
     params.append("code_verifier", verifier);
-
-    // console.log('clientID', clientId)
-    // console.log('params id', params.get('client_id'))
-    // console.log('params grant', params.get('grant_type'))
-    // console.log('params verifier', params.get('code_verifier'))
-
 
     const result = await fetch("https://accounts.spotify.com/api/token", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: params
     });
-    
-    console.log('result', result)
 
     const { access_token } = await result.json();
     return access_token;
@@ -78,26 +70,23 @@ async function fetchProfile(token) {
     const result = await fetch("https://api.spotify.com/v1/me", {
         method: "GET", headers: { Authorization: `Bearer ${token}` }
     });
+    console.log(result)
     return await result.json();
 }
 
 
 function populateUI(profile) {
-    console.log(profile)
     document.getElementById("displayName").innerText = profile.display_name;
     if (profile.images[0]) {
-        const profileImage = new Image(200, 200);
+        const profileImage = new Image(30, 30);
         profileImage.src = profile.images[0].url;
         document.getElementById("avatar").appendChild(profileImage);
-        document.getElementById("imgUrl").innerText = profile.images[0].url;
+        // document.getElementById("imgUrl").innerText = profile.images[0].url;
     }
     document.getElementById("id").innerText = profile.id;
     document.getElementById("email").innerText = profile.email;
-    document.getElementById("uri").innerText = profile.uri;
-    document.getElementById("uri").setAttribute("href", profile.external_urls.spotify);
-    document.getElementById("url").innerText = profile.href;
-    document.getElementById("url").setAttribute("href", profile.href);
+    // document.getElementById("uri").innerText = profile.uri;
+    // document.getElementById("uri").setAttribute("href", profile.external_urls.spotify);
+    // document.getElementById("url").innerText = profile.href;
+    // document.getElementById("url").setAttribute("href", profile.href);
 }
-
-
-
