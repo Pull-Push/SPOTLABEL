@@ -6,8 +6,6 @@ const generateRandomString = (length) => {
 
 const codeVerifier = generateRandomString(128);
 
-console.log('code_verifier', codeVerifier)
-
 const sha256 = async (plain) => {
     const encoder = new TextEncoder()
     const data = encoder.encode(plain)
@@ -22,9 +20,6 @@ const base64encode = (input) => {
 const hashed = await sha256(codeVerifier)
 const codeChallenge = base64encode(hashed);
 
-console.log('hashed', hashed)
-console.log('codeChallenge', codeChallenge)
-
 const clientId = 'c14fbfba540841f68ad36e0a5b91e9e4'; //DEMO APP CLIENT ID
 const redirectUri = 'http://localhost:8000/redir/';
 
@@ -32,7 +27,7 @@ const scope = 'user-read-private user-read-email';
 const authUrl = new URL("https://accounts.spotify.com/authorize")
 
 // generated in the previous step
-window.localStorage.setItem('code_verifier', codeVerifier);
+localStorage.setItem('code_verifier', codeVerifier);
 
 const params = {
     response_type: 'code',
@@ -53,7 +48,6 @@ const getToken = async code => {
 
     // stored in the previous step
     let codeVerifier = localStorage.getItem('code_verifier');
-    
     const payload = {
         method: 'POST',
         headers: {
@@ -62,13 +56,13 @@ const getToken = async code => {
         body: new URLSearchParams({
             client_id: clientId,
             grant_type: 'authorization_code',
-            code,
+            code: code,
             redirect_uri: redirectUri,
             code_verifier: codeVerifier,
         }),
     }
 
-    const body = await fetch(url, payload);
+    const body = await fetch("https://accounts.spotify.com/api/token", payload);
     const response = await body.json();
 
     localStorage.setItem('access_token', response.access_token);
