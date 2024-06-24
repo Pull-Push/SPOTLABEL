@@ -14,3 +14,9 @@ def login(request):
 
 def redir(request):
     return render(request, 'redir.html')
+
+def vite(request):
+    return render(request, 'indexvite.html')
+
+def callback(request):
+    return redirect('vite')
