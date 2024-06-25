@@ -37,13 +37,14 @@ const params = {
     code_challenge: codeChallenge,
     redirect_uri: redirectUri,
 }
+console.log(params) //works to this point
 
-authUrl.search = new URLSearchParams(params).toString();
+authUrl.search = new URLSearchParams(params).toString(); //adds all params to authURL
 window.location.href = authUrl.toString();
+
 
 const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get('code');
-
 const getToken = async code => {
 
     // stored in the previous step
@@ -67,3 +68,6 @@ const getToken = async code => {
 
     localStorage.setItem('access_token', response.access_token);
 }
+
+at = localStorage.getItem('access_token')
+console.log('token', at)

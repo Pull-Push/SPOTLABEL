@@ -19,9 +19,9 @@ export async function redirectToAuthCodeFlow(clientId) {
     const params = new URLSearchParams();
     params.append("client_id", clientId);
     params.append("response_type", "code");
-    params.append("redirect_uri", "http://localhost:8000");
+    params.append("redirect_uri", "http://localhost:8000/");
     params.append("scope", "user-read-private user-read-email");
-    params.append("code_challenge_method", "S256");
+    params.append("code_challenge_method", "S256"); 
     params.append("code_challenge", challenge);
 
     document.location = `https://accounts.spotify.com/authorize?${params.toString()}`;
@@ -48,35 +48,41 @@ async function generateCodeChallenge(codeVerifier) {
 
 export async function getAccessToken(clientId, code) {
     const verifier = localStorage.getItem("verifier");
+    console.log('clientid',clientId)
+    console.log('code', code)
+
+    console.log('ver_len', verifier.length)
+    console.log('verifier', verifier)
 
     const params = new URLSearchParams();
+
     params.append("client_id", clientId);
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://localhost:8000");
+    params.append("redirect_uri", "http://localhost:8000/");
     params.append("code_verifier", verifier);
+    
 
-    // console.log('params id', params.get('client_id'))
-    // console.log('params grant', params.get('grant_type'))
-    // console.log('params code', params.get('code'))
-    // console.log('params redirect_uri', params.get('redirect_uri'))
-    // console.log('params verifier', params.get('code_verifier'))
 
     const result = await fetch("https://accounts.spotify.com/api/token", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: params
     });
-    
 
     const { access_token } = await result.json();
+    localStorage.setItem('acc_tok' , access_token);
     return access_token;
 }
 
 async function fetchProfile(token) {
+    console.log('token', token);
+    const access_token_FS = localStorage.getItem('acc_tok');
+    console.log('acc_tok', access_token_FS);
     const result = await fetch("https://api.spotify.com/v1/me", {
-        method: "GET", headers: { Authorization: `Bearer ${token}` }
+        method: "GET", headers: { Authorization: `Bearer ${access_token_FS}` }
     });
+
     return await result.json();
 }
 
@@ -96,6 +102,3 @@ function populateUI(profile) {
     document.getElementById("url").innerText = profile.href;
     document.getElementById("url").setAttribute("href", profile.href);
 }
-
-
-

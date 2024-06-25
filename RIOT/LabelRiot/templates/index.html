@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
+{% load static %}
+
 <head>
-    <meta charset="utf-8">
-    <title>My Spotify Profile</title>
-    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static 'js/script.js' %}" type="module"></script>
+
+    <title>Document</title>
 </head>
 
 <body>
     <h1>Display your Spotify profile data</h1>
-
+    <h2>redirected</h2>
     <section id="profile">
         <h2>Logged in as <span id="displayName"></span></h2>
         <span id="avatar"></span>
@@ -21,6 +25,7 @@
             <li>Profile Image: <span id="imgUrl"></span></li>
         </ul>
     </section>
+    {{context}}
 </body>
-<script src="{% static '/js/pkce_auth.js' %}" type="module"></script>
+
 </html>
