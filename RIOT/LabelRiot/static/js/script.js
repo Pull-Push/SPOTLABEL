@@ -19,7 +19,8 @@ export async function redirectToAuthCodeFlow(clientId) {
     const params = new URLSearchParams();
     params.append("client_id", clientId);
     params.append("response_type", "code");
-    params.append("redirect_uri", "http://localhost:8000/");
+    params.append("redirect_uri", "http://127.0.0.1:8000/"); //    params.append("redirect_uri", "http://localhost:8000/"); THIS WORKS
+    //MUST MATCH DEV SERVER ADDRESS!!!
     params.append("scope", "user-read-private user-read-email");
     params.append("code_challenge_method", "S256"); 
     params.append("code_challenge", challenge);
@@ -59,7 +60,8 @@ export async function getAccessToken(clientId, code) {
     params.append("client_id", clientId);
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://localhost:8000/");
+    params.append("redirect_uri", "http://127.0.0.1:8000/"); //    params.append("redirect_uri", "http://localhost:8000/"); THIS WORKS!
+    //MUST MATCH DEV SERVER ADDRESS!!!
     params.append("code_verifier", verifier);
     
 
@@ -71,11 +73,13 @@ export async function getAccessToken(clientId, code) {
     });
 
     const { access_token } = await result.json();
-    localStorage.setItem('acc_tok' , access_token);
     return access_token;
 }
 
 async function fetchProfile(token) {
+    if (token!=undefined){
+        localStorage.setItem('acc_tok' , token);
+    } 
     console.log('token', token);
     const access_token_FS = localStorage.getItem('acc_tok');
     console.log('acc_tok', access_token_FS);
