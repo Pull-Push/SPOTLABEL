@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 #HomePage
 def index(request):
     name = 'user'
-    return render(request, 'index.html', {'name':name})
+    return render(request, 'login.html', {'name':name})
 
 #Spotify Login
 def login(request):
