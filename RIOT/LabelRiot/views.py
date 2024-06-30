@@ -4,8 +4,10 @@ from django.shortcuts import render, redirect
 
 #HomePage
 def index(request):
-    name = 'user'
-    return render(request, 'login.html', {'name':name})
+    return render(request, 'login.html')
+
+def search(request):
+    return render(request, 'search.html')
 
 #Spotify Login
 def login(request):
