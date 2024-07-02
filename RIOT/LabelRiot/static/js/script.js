@@ -19,7 +19,7 @@ export async function redirectToAuthCodeFlow(clientId) {
     const params = new URLSearchParams();
     params.append("client_id", clientId);
     params.append("response_type", "code");
-    params.append("redirect_uri", "http://127.0.0.1:8000/"); //    params.append("redirect_uri", "http://localhost:8000/"); THIS WORKS
+    params.append("redirect_uri", "http://127.0.0.1:8000/search"); //    params.append("redirect_uri", "http://localhost:8000/"); THIS WORKS
     //MUST MATCH DEV SERVER ADDRESS!!!
     params.append("scope", "user-read-private user-read-email");
     params.append("code_challenge_method", "S256"); 
@@ -60,7 +60,7 @@ export async function getAccessToken(clientId, code) {
     params.append("client_id", clientId);
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://127.0.0.1:8000/"); //    params.append("redirect_uri", "http://localhost:8000/"); THIS WORKS!
+    params.append("redirect_uri", "http://127.0.0.1:8000/search"); //    params.append("redirect_uri", "http://localhost:8000/"); THIS WORKS!
     //MUST MATCH DEV SERVER ADDRESS!!!
     params.append("code_verifier", verifier);
     

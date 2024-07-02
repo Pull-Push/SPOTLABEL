@@ -3,3 +3,4 @@
 6/24/24 - more auth work - log in works if you enter the dev server in URL search directly, but not from django link. fuck if i know why
 6/24/24 - figured out AUTH issue. JFC that was annoying. RedirectURI MUST match Django server address in order to work. localhost != 127.0.0.1
 6/30/24 - VACATION UPDATE - Minor work on search page bones. Cleaned up URL flow
+7/2/24 - VACATION UPDATE - Start work on logout session clearing

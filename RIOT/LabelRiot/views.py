@@ -9,6 +9,10 @@ def index(request):
 def search(request):
     return render(request, 'search.html')
 
+def logout(request):
+    ##put redirect here
+    return render(request, 'logout.html')
+
 #Spotify Login
 def login(request):
     name = 'user'
